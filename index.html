@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Proposta · Beatriz Conrado</title>
+<meta name="description" content="A travessia para uma vida nova — proposta de aplicação para as marcas de Beatriz Conrado." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  /* ============================================================
+     PALETA — azul elegante (placeholder: identidade final depois)
+     ============================================================ */
+  :root{
+    --bg:#FFFFFF;            /* 60 — branco dominante */
+    --bg-2:#F4F4F5;
+    --surface:#FFFFFF;
+    --surface-2:#FAFAFA;
+    --line:#E5E5E8;          /* bordas claras */
+    --accent:#1A65E8;        /* 10 — azul Elienai (Blue Signal) */
+    --accent-2:#3D88F5;      /* Blue Light — ponto do logo / acentos */
+    --paper:#0B0B0C;         /* 30 — preto dos escritos */
+    --mist:#5C5C61;
+    --mist-2:#9A9AA0;
+    --maxw:1180px;
+    --ease:cubic-bezier(.22,.61,.36,1);
+    --r:18px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:auto}
+  html.lenis,html.lenis body{height:auto}
+  .lenis.lenis-smooth{scroll-behavior:auto!important}
+  .lenis.lenis-stopped{overflow:hidden}
+  body{
+    color:var(--paper);
+    background:
+      radial-gradient(78% 52% at 50% -4%, #FFFFFF 0%, rgba(255,255,255,0) 60%),   /* luz-chave (topo) */
+      radial-gradient(130% 95% at 50% 112%, #EBEBEF 0%, rgba(235,235,239,0) 55%), /* sombra de chão */
+      radial-gradient(60% 50% at 88% 8%, rgba(26,101,232,.035), transparent 60%),    /* sopro quente da marca */
+      linear-gradient(180deg, #FBFBFD 0%, #F4F4F7 100%);                           /* base tonal */
+    background-attachment:fixed;
+    font-family:"Plus Jakarta Sans",system-ui,sans-serif;font-weight:300;line-height:1.6;
+    -webkit-font-smoothing:antialiased;overflow-x:hidden;
+  }
+  ::selection{background:var(--accent);color:var(--bg)}
+  /* grão de render / textura 4k */
+  body::before{content:"";position:fixed;inset:0;z-index:4;pointer-events:none;opacity:.11;mix-blend-mode:multiply;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
+  /* leve queda de luz fotográfica (softbox) */
+  body::after{content:"";position:fixed;inset:0;z-index:3;pointer-events:none;
+    background:radial-gradient(118% 90% at 50% 20%, transparent 52%, rgba(20,18,24,.05) 82%, rgba(20,18,24,.10) 100%);}
+  /* cursor vermelho (ponteiro no PC / dedo no celular) */
+  .cursor{position:fixed;top:0;left:0;width:16px;height:16px;border-radius:50%;background:var(--accent);
+    box-shadow:0 0 14px rgba(26,101,232,.55);pointer-events:none;z-index:9999;opacity:0;
+    transition:width .25s var(--ease),height .25s var(--ease),background .25s var(--ease),opacity .3s var(--ease)}
+  .cursor.big{width:50px;height:50px;background:rgba(26,101,232,.16);box-shadow:0 0 0 1px rgba(26,101,232,.5)}
+  html.has-cursor,html.has-cursor a,html.has-cursor button,html.has-cursor .plan,html.has-cursor .g-item{cursor:none}
+  html.has-cursor input,html.has-cursor textarea{cursor:text}
+
+  .display{font-family:"Plus Jakarta Sans",sans-serif;font-weight:800;line-height:1.04;letter-spacing:-.02em}
+  .eyebrow{font-family:"IBM Plex Sans",sans-serif;font-size:.74rem;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);font-weight:500}
+  .op{font-family:"IBM Plex Sans",sans-serif}
+  .lead{font-size:clamp(1.04rem,1.5vw,1.24rem);color:var(--mist);font-weight:300;max-width:60ch}
+  a{color:inherit}
+
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 26px}
+  section{position:relative;padding:clamp(112px,16vh,210px) 0}
+  .divider{height:1px;background:linear-gradient(90deg,transparent,var(--line) 20%,var(--line) 80%,transparent)}
+
+  /* ---------- nav (identidade do Elienai) ---------- */
+  header.bar{
+    position:fixed;top:0;left:0;right:0;z-index:60;display:flex;align-items:center;justify-content:space-between;
+    padding:16px 26px;background:linear-gradient(180deg,rgba(255,255,255,.94),rgba(255,255,255,0));backdrop-filter:blur(3px);
+  }
+  .brandmark{font-family:"Plus Jakarta Sans",sans-serif;font-weight:800;font-size:1.35rem;letter-spacing:-.03em;color:var(--paper);display:inline-flex;align-items:flex-start}
+  .brandmark .dot{width:6px;height:6px;border-radius:50%;background:var(--accent-2);margin:5px 0 0 3px}
+  .brandmark .sub{font-family:"IBM Plex Sans",monospace;font-weight:400;font-size:.6rem;letter-spacing:.34em;text-transform:uppercase;color:var(--mist-2);align-self:flex-end;margin-left:10px;padding-bottom:3px}
+  .bar .meta{font-family:"IBM Plex Sans",sans-serif;font-size:.72rem;letter-spacing:.12em;color:var(--mist-2);text-transform:uppercase}
+
+  /* ============================================================
+     HERO — planeta + caminho percorrido no scroll
+     ============================================================ */
+  /* HERO — modelo Tyrone, BrazuS apresentando + vidro */
+  .hero{min-height:100vh;display:flex;align-items:center;position:relative;overflow:hidden;padding-top:90px}
+  /* lamp — fonte de luz fotográfica no topo, baixa opacidade */
+  .hero-bg{position:absolute;inset:0;z-index:0;pointer-events:none}
+  .hero-bg::before{content:"";position:absolute;top:-40px;left:50%;transform:translateX(-50%);
+    width:min(820px,92%);height:420px;
+    background:radial-gradient(60% 80% at 50% 0%, rgba(26,101,232,.10), rgba(26,101,232,.03) 40%, transparent 72%);
+    filter:blur(18px)}
+  .hero-bg::after{content:"";position:absolute;top:74px;left:50%;transform:translateX(-50%);
+    width:min(560px,70%);height:2px;background:linear-gradient(90deg,transparent,var(--accent),transparent);
+    opacity:.55;filter:blur(.4px)}
+  .hero-inner{position:relative;z-index:2;display:grid;grid-template-columns:1.12fr .88fr;gap:50px;align-items:center;width:100%}
+  .hero-left{max-width:30ch}
+  .hero .eyebrow{margin-bottom:30px}
+  .hero-title{font-size:clamp(1.6rem,3vw,2.5rem);font-weight:600;line-height:1.3;letter-spacing:-.01em}
+  .hero-title .hl{color:var(--accent)}
+  .hero-sub{margin-top:30px;color:var(--mist);font-size:1.02rem;max-width:38ch}
+  .chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
+  .chip{font-family:"IBM Plex Sans";font-size:.76rem;color:var(--paper);background:rgba(0,0,0,.035);border:1px solid var(--line);border-radius:30px;padding:8px 15px;backdrop-filter:blur(10px)}
+  .hero-cta{display:flex;gap:14px;margin-top:34px;flex-wrap:wrap}
+  .glasscard{border-radius:22px;padding:16px;background:rgba(0,0,0,.02);border:1px solid var(--line);
+    backdrop-filter:blur(20px);box-shadow:0 44px 100px -34px rgba(0,0,0,.14), 0 0 70px rgba(26,101,232,.10);transform:rotate(.6deg)}
+  .glasscard .cap{display:flex;justify-content:space-between;align-items:center;padding:4px 6px 14px;font-family:"IBM Plex Sans";font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--mist-2)}
+  .glasscard .cap b{color:var(--accent);font-weight:600}
+  /* imagem conceitual — "a decisão certa" */
+  .chair{position:relative;display:flex;align-items:center;justify-content:center;perspective:1100px}
+  .chair .float{animation:float3d 6s ease-in-out infinite;will-change:transform}
+  .chair .obj3d{display:block;width:100%;max-width:520px;border-radius:14px;
+    filter:drop-shadow(0 38px 52px rgba(7,8,10,.32));will-change:transform}
+  .chair .ph{width:100%;max-width:460px;aspect-ratio:1/1;display:flex;align-items:center;justify-content:center;text-align:center;
+    border-radius:16px;background:repeating-linear-gradient(45deg,#f2f2f3 0 16px,#ececed 16px 32px);
+    color:var(--mist-2);font-family:"IBM Plex Sans";font-size:.8rem;padding:20px}
+  @keyframes float3d{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+  /* janela Mac com recado para a Bia */
+  .macwin{width:100%;box-shadow:0 46px 100px -38px rgba(7,8,10,.34)}
+  .macwin .screen.note{display:block;padding:24px;background:var(--surface)}
+  .note .hi{font-size:.98rem;color:var(--paper);font-weight:500;line-height:1.5;margin-bottom:20px}
+  .note .steps{list-style:none;display:grid;gap:15px}
+  .note .steps li{display:flex;gap:12px;align-items:flex-start}
+  .note .steps .n{flex:0 0 auto;width:25px;height:25px;border-radius:50%;background:var(--accent);color:#fff;
+    font-family:"IBM Plex Sans";font-size:.78rem;font-weight:600;display:flex;align-items:center;justify-content:center}
+  .note .steps .tx b{display:block;font-size:.92rem;color:var(--paper);font-weight:600;margin-bottom:2px}
+  .note .steps .tx span{display:block;font-size:.85rem;color:var(--mist);line-height:1.45}
+  .note .foot{margin-top:20px;padding-top:16px;border-top:1px solid var(--line);font-size:.86rem;color:var(--mist);line-height:1.5}
+  .note .foot b{color:var(--accent);font-weight:600}
+  .hero .atmos{position:absolute;inset:0;z-index:0;
+    background:
+      radial-gradient(55% 48% at 82% 40%, rgba(26,101,232,.22), transparent 62%),
+      radial-gradient(80% 60% at 50% 122%, rgba(70,12,16,.42), transparent 60%);
+  }
+  /* planeta — esfera escura com luz de borda (rim light) */
+  .planet{
+    position:absolute;right:-4vw;top:50%;transform:translateY(-50%);
+    width:min(46vw,540px);height:min(46vw,540px);border-radius:50%;z-index:1;
+    background:
+      radial-gradient(28% 26% at 32% 27%, rgba(255,150,150,.6), transparent 52%),
+      radial-gradient(120% 120% at 68% 72%, #09070e 16%, #1b1430 58%, #2c2148 100%);
+    box-shadow:
+      inset -34px -22px 90px rgba(0,0,0,.12),
+      inset 24px 18px 70px rgba(26,101,232,.12),
+      0 0 180px rgba(26,101,232,.16);
+  }
+  .planet::after{content:"";position:absolute;inset:-9% -9%;border-radius:50%;
+    border:1px solid rgba(26,101,232,.22);transform:rotate(-18deg) scaleY(.32);}
+  .planet .ring2{position:absolute;inset:-16% -16%;border-radius:50%;border:1px solid rgba(26,101,232,.10);transform:rotate(-18deg) scaleY(.32)}
+
+  /* rota svg */
+  .route{position:absolute;inset:0;z-index:2;width:100%;height:100%}
+  .route .base{fill:none;stroke:rgba(120,120,124,.22);stroke-width:1.4;stroke-dasharray:5 7}
+  .route .glow{fill:none;stroke:var(--accent);stroke-width:2.4;filter:drop-shadow(0 0 7px rgba(26,101,232,.7));stroke-linecap:round}
+  .route .node{fill:var(--bg);stroke:rgba(120,120,124,.5);stroke-width:1.5}
+  .route .node.arr{stroke:var(--accent)}
+  .route text{font-family:"IBM Plex Sans";font-size:13px;letter-spacing:.14em;fill:var(--mist-2);text-transform:uppercase}
+  .route text.arr{fill:var(--accent)}
+  .craft{fill:var(--accent-2);filter:drop-shadow(0 0 8px rgba(194,219,240,.9))}
+
+  .scrollcue{position:absolute;bottom:34px;left:26px;z-index:3;display:flex;align-items:center;gap:12px;color:var(--mist-2);font-family:"IBM Plex Sans";font-size:.72rem;letter-spacing:.16em;text-transform:uppercase}
+  .scrollcue .ln{width:46px;height:1px;background:var(--mist-2);transform-origin:left;animation:cue 2.4s var(--ease) infinite}
+  @keyframes cue{0%,100%{transform:scaleX(.4);opacity:.4}50%{transform:scaleX(1);opacity:1}}
+
+  /* ============================================================
+     FASE 1 — visualização do manual de marca (bento)
+     ============================================================ */
+  .sys .head{max-width:60ch;margin-bottom:74px}
+  .sys h2{font-size:clamp(2rem,4.4vw,3.2rem);margin:16px 0 16px}
+  .bento{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:200px;gap:22px}
+  .tile{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:22px;position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:space-between;box-shadow:0 18px 42px -30px rgba(0,0,0,.20);transition:transform .4s var(--ease),border-color .4s var(--ease),box-shadow .4s var(--ease)}
+  .tile:hover{transform:translateY(-4px);border-color:var(--accent);box-shadow:0 26px 54px -28px rgba(0,0,0,.22)}
+  .tile .k{font-family:"IBM Plex Sans";font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--mist-2)}
+  .tile h3{font-family:"Plus Jakarta Sans",sans-serif;font-weight:700;font-size:1.3rem}
+  .tile.lg{grid-column:span 2;grid-row:span 2}
+  .tile.wd{grid-column:span 2}
+
+  .mono-demo{font-family:"Plus Jakarta Sans",sans-serif;font-weight:700;font-size:clamp(3rem,7vw,5.5rem);line-height:.9;color:var(--paper)}
+  .mono-demo small{display:block;font-family:"IBM Plex Sans";font-size:.7rem;letter-spacing:.14em;color:var(--mist-2);margin-top:14px;text-transform:uppercase}
+  .swatches{display:flex;gap:10px;margin-top:auto}
+  .sw{flex:1;height:54px;border-radius:9px;border:1px solid rgba(0,0,0,.10)}
+  .logo-ph{flex:1;display:flex;align-items:center;justify-content:center}
+  .logo-ph .mk{width:84px;height:84px;border-radius:50%;border:1.5px solid var(--accent);display:flex;align-items:center;justify-content:center;font-family:"Plus Jakarta Sans",sans-serif;font-weight:700;font-size:2.2rem;color:var(--accent)}
+  .btns{display:flex;gap:10px;flex-wrap:wrap;margin-top:auto}
+  .pill{font-family:"IBM Plex Sans";font-size:.78rem;padding:9px 16px;border-radius:30px}
+  .pill.solid{background:var(--accent);color:var(--bg)}
+  .pill.ghost{border:1px solid var(--line);color:var(--paper)}
+  .photo-ph{flex:1;border-radius:11px;margin-top:14px;background:
+      linear-gradient(120deg, rgba(26,101,232,.10), rgba(0,0,0,.05)),
+      repeating-linear-gradient(45deg, rgba(0,0,0,.025) 0 12px, transparent 12px 24px);
+    border:1px solid var(--line);display:flex;align-items:flex-end;padding:14px}
+  .photo-ph span{font-family:"IBM Plex Sans";font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--mist)}
+  .voice{color:var(--mist);font-size:.95rem;margin-top:8px}
+  .voice b{color:var(--paper);font-weight:500}
+
+  /* ============================================================
+     FASE 2 — arquitetura comparativa (janelas estilo Apple)
+     ============================================================ */
+  .arch .head{max-width:60ch;margin-bottom:78px}
+  .arch h2{font-size:clamp(2rem,4.4vw,3.2rem);margin:16px 0 16px}
+  .compare{display:grid;grid-template-columns:1fr 1px 1fr;gap:50px;align-items:start}
+  .midline{width:1px;align-self:stretch;background:linear-gradient(180deg,transparent,var(--line) 12%,var(--line) 88%,transparent)}
+  .siteCol .sitehead{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:6px;flex-wrap:wrap}
+  .siteCol .brand{font-family:"Plus Jakarta Sans",sans-serif;font-weight:700;font-size:1.5rem}
+  .siteCol .svc{font-family:"IBM Plex Sans";font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:var(--accent)}
+  .siteCol .dom{font-family:"IBM Plex Sans";font-size:.82rem;color:var(--mist-2);margin-bottom:18px}
+
+  .window{background:var(--surface);border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:0 36px 70px -28px rgba(0,0,0,.13)}
+  .window .top{display:flex;align-items:center;gap:7px;padding:11px 13px;background:rgba(0,0,0,.025);border-bottom:1px solid var(--line)}
+  .window .dot{width:11px;height:11px;border-radius:50%}
+  .window .url{margin-left:8px;flex:1;font-family:"IBM Plex Sans";font-size:.7rem;color:var(--mist);background:rgba(0,0,0,.035);padding:5px 12px;border-radius:7px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .screen{padding:14px;display:grid;gap:10px;background:linear-gradient(180deg,var(--bg-2),var(--surface))}
+  .wf{border-radius:9px;background:rgba(0,0,0,.028);border:1px solid var(--line);padding:12px}
+  .wf .lbl{font-family:"IBM Plex Sans";font-size:.6rem;letter-spacing:.13em;text-transform:uppercase;color:var(--mist-2);margin-bottom:9px}
+  .wf .ln{height:7px;border-radius:5px;background:rgba(120,120,124,.16);margin-bottom:6px}
+  .wf .ln.s{width:55%}.wf .ln.m{width:75%}
+  .wf.hero-wf{background:linear-gradient(120deg,rgba(26,101,232,.10),rgba(0,0,0,.035))}
+  .siteCol .about{color:var(--mist);font-size:.94rem;margin-top:18px;max-width:42ch}
+
+  /* ============================================================
+     PACOTES
+     ============================================================ */
+  .plans{background:transparent}
+  .plans h2{font-size:clamp(2rem,4.4vw,3.2rem);max-width:20ch;margin:14px 0 14px}
+  .plans .note{font-family:"IBM Plex Sans";font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--mist-2);margin-bottom:44px}
+  .pgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;align-items:stretch}
+  .plan{border:1px solid var(--line);border-radius:var(--r);background:var(--surface);padding:clamp(22px,2.4vw,32px);display:flex;flex-direction:column;position:relative;cursor:pointer;box-shadow:0 20px 48px -32px rgba(0,0,0,.20);transition:transform .35s var(--ease),border-color .35s var(--ease),box-shadow .35s var(--ease)}
+  .plan:hover{transform:translateY(-4px);border-color:var(--accent);box-shadow:0 28px 60px -30px rgba(0,0,0,.24)}
+  .plan.feat{border-color:var(--accent)}
+  .plan.future{background:rgba(19,41,74,.4);border-style:dashed;cursor:default}
+  .plan.sel{border-color:var(--accent);box-shadow:0 0 0 2px var(--accent),0 30px 50px -24px rgba(26,101,232,.4)}
+  .plan .check{position:absolute;top:16px;right:16px;width:24px;height:24px;border-radius:50%;border:1.5px solid var(--line);display:flex;align-items:center;justify-content:center;color:var(--bg);font-size:.8rem;transition:.3s var(--ease)}
+  .plan.sel .check{background:var(--accent);border-color:var(--accent)}
+  .plan.future .check{display:none}
+  .plan .tier{font-family:"IBM Plex Sans";font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--accent)}
+  .plan .pname{font-family:"Plus Jakarta Sans",sans-serif;font-weight:700;font-size:1.5rem;margin:10px 0 6px}
+  .plan .desc{color:var(--mist);font-size:.92rem;min-height:58px}
+  .plan .price{font-family:"Plus Jakarta Sans",sans-serif;font-weight:700;font-size:2.6rem;color:var(--paper);margin:14px 0 2px;line-height:1}
+  .plan .price small{font-size:.9rem;color:var(--mist-2);font-family:"Plus Jakarta Sans"}
+  .plan .maint{font-family:"IBM Plex Sans";font-size:.84rem;color:var(--mist);margin-bottom:16px}
+  .plan .maint b{color:var(--accent-2);font-weight:600}
+  .plan .ideal{font-size:.85rem;color:var(--accent-2);border-top:1px solid var(--line);padding-top:13px;margin-bottom:14px}
+  .plan ul{list-style:none;display:grid;gap:9px;margin-top:auto}
+  .plan li{color:var(--mist);font-size:.9rem;padding-left:20px;position:relative;line-height:1.45}
+  .plan li::before{content:"›";position:absolute;left:2px;top:1px;color:var(--accent)}
+  .plan .badge{position:absolute;top:-11px;left:22px;font-family:"IBM Plex Sans";font-size:.64rem;letter-spacing:.14em;text-transform:uppercase;color:var(--bg);background:var(--accent);padding:4px 12px;border-radius:20px;font-weight:500}
+  .plan .badge.fut{background:transparent;color:var(--mist-2);border:1px solid var(--line)}
+
+  /* ---------- sobre a consultoria (Elienai) ---------- */
+  .me h2{font-size:clamp(1.9rem,4.2vw,3rem);max-width:22ch;margin:14px 0 18px}
+  .me .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:40px}
+  .me .cell{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:26px}
+  .me .cell .n{font-family:"IBM Plex Sans";font-size:.72rem;letter-spacing:.16em;color:var(--accent)}
+  .me .cell h3{font-family:"Plus Jakarta Sans",sans-serif;font-weight:700;font-size:1.3rem;margin:14px 0 10px}
+  .me .cell p{color:var(--mist);font-size:.94rem}
+
+  /* ============================================================
+     BRIEFING (desbloqueia ao escolher pacote)
+     ============================================================ */
+  .brief{background:transparent}
+  .brief .inner{position:relative;border:1px solid var(--line);border-radius:20px;background:var(--surface);padding:clamp(26px,4vw,52px);transition:.5s var(--ease)}
+  .brief.locked .inner{filter:blur(5px);opacity:.5;pointer-events:none}
+  .brief .lockmsg{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;text-align:center;z-index:4;color:var(--mist)}
+  .brief.locked .lockmsg{display:flex}
+  .brief:not(.locked) .lockmsg{display:none}
+  .brief .lockmsg .op{font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--mist-2)}
+  .brief h2{font-size:clamp(1.8rem,4vw,2.7rem);margin:12px 0 8px}
+  .brief .sub{color:var(--mist);margin-bottom:30px;max-width:54ch}
+  .fields{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  .field{display:flex;flex-direction:column;gap:8px}
+  .field.full{grid-column:1/-1}
+  .field label{font-family:"IBM Plex Sans";font-size:.74rem;letter-spacing:.06em;color:var(--accent-2)}
+  .field input,.field textarea{font-family:"Plus Jakarta Sans";font-size:.96rem;color:var(--paper);background:var(--bg-2);border:1px solid var(--line);border-radius:10px;padding:13px 15px;resize:vertical}
+  .field input:focus,.field textarea:focus{outline:none;border-color:var(--accent)}
+  .field input::placeholder,.field textarea::placeholder{color:var(--mist-2)}
+  .brief .send{margin-top:26px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+  .brief select{font-family:"Plus Jakarta Sans";font-size:.95rem;color:var(--paper);background:var(--bg-2);border:1px solid var(--line);border-radius:10px;padding:13px 15px;-webkit-appearance:none;appearance:none;cursor:pointer}
+  .brief select:focus{outline:none;border-color:var(--accent)}
+  .hintbox{background:var(--bg-2);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:12px;padding:18px 20px;margin-bottom:26px}
+  .hintbox .hb-title{font-weight:600;color:var(--paper);font-size:.95rem;margin-bottom:6px}
+  .hintbox p{font-size:.9rem;color:var(--mist);line-height:1.6}
+  .hintbox b{color:var(--paper)}
+  .terms{margin-top:28px;border-top:1px solid var(--line);padding-top:24px;display:grid;gap:13px}
+  .terms-title{font-family:"IBM Plex Sans";font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;color:var(--mist-2);margin-bottom:2px}
+  .term{display:flex;align-items:flex-start;gap:12px;cursor:pointer;font-size:.9rem;color:var(--mist);line-height:1.5}
+  .term input{appearance:none;-webkit-appearance:none;flex:0 0 auto;width:20px;height:20px;border:1.5px solid var(--line);border-radius:6px;margin-top:1px;cursor:pointer;position:relative;transition:.2s var(--ease)}
+  .term input:checked{background:var(--accent);border-color:var(--accent)}
+  .term input:checked::after{content:"✓";position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#fff;font-size:.74rem;font-weight:700}
+  .term b{color:var(--paper);font-weight:600}
+
+  .btn{display:inline-flex;align-items:center;gap:11px;font-family:"IBM Plex Sans";font-size:.84rem;letter-spacing:.04em;color:var(--bg);background:var(--accent);padding:15px 28px;border:none;border-radius:40px;cursor:pointer;text-decoration:none;transition:.3s var(--ease)}
+  .btn:hover{background:var(--accent-2);transform:translateY(-2px)}
+  .btn .arrow{transition:transform .3s var(--ease)}.btn:hover .arrow{transform:translateX(4px)}
+  .btn.ghost{background:transparent;border:1px solid var(--line);color:var(--paper)}
+
+  /* ---------- barra de fechamento ---------- */
+  .closebar{position:fixed;left:0;right:0;bottom:0;z-index:70;transform:translateY(120%);transition:transform .45s var(--ease);
+    background:rgba(255,255,255,.92);backdrop-filter:blur(10px);border-top:1px solid var(--line)}
+  .closebar.show{transform:none}
+  .closebar .wrap{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:16px 26px;flex-wrap:wrap}
+  .closebar .lbl{font-family:"IBM Plex Sans";font-size:.86rem;color:var(--mist)}
+  .closebar .lbl b{color:var(--paper);font-family:"Plus Jakarta Sans",sans-serif;font-weight:700;font-size:1.05rem}
+
+  footer{padding:40px 0;border-top:1px solid var(--line)}
+  footer .wrap{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+  footer .meta{font-family:"IBM Plex Sans";font-size:.7rem;letter-spacing:.1em;color:var(--mist-2);text-transform:uppercase}
+
+  .reveal{opacity:0}  /* animação controlada por GSAP ScrollTrigger */
+
+  /* ---------- botão flutuante guia (scroll-spy) ---------- */
+  .guide{position:fixed;right:20px;top:50%;transform:translateY(-50%);z-index:66;
+    display:flex;flex-direction:column;gap:2px;padding:10px 9px;border-radius:38px;
+    background:rgba(255,255,255,.72);backdrop-filter:blur(14px);border:1px solid var(--line);
+    box-shadow:0 20px 50px -18px rgba(0,0,0,.12)}
+  .g-item{display:flex;align-items:center;gap:11px;text-decoration:none;color:var(--mist-2);
+    padding:7px;border-radius:30px;transition:color .3s var(--ease),background .3s var(--ease)}
+  .g-item .ic{width:30px;height:30px;flex:0 0 auto;display:flex;align-items:center;justify-content:center;
+    border-radius:50%;border:1px solid currentColor;transition:.3s var(--ease)}
+  .g-item .ic svg{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+  .g-item .gl{font-family:"IBM Plex Sans";font-size:.74rem;letter-spacing:.03em;white-space:nowrap;
+    max-width:0;opacity:0;overflow:hidden;transition:max-width .3s var(--ease),opacity .3s var(--ease)}
+  .g-item:hover{color:var(--mist)}
+  .g-item:hover .gl{max-width:140px;opacity:1}
+  .g-item.seen{color:var(--mist)}
+  .g-item.active{color:var(--accent)}
+  .g-item.active .gl{max-width:140px;opacity:1}
+  .g-item.active .ic{background:var(--accent);color:var(--bg);border-color:var(--accent);
+    box-shadow:0 0 18px rgba(26,101,232,.55)}
+
+  @media(max-width:900px){
+    .bento{grid-template-columns:repeat(2,1fr)}
+    .tile.lg{grid-column:span 2;grid-row:span 1}
+  }
+  @media(max-width:820px){
+    .compare{grid-template-columns:1fr;gap:40px}.midline{display:none}
+    .pgrid{grid-template-columns:1fr}
+    .me .grid3{grid-template-columns:1fr}
+    .fields{grid-template-columns:1fr}
+    .hero-inner{grid-template-columns:1fr;gap:40px}
+    .hero-left{max-width:none}
+    .glasscard{transform:none}
+    .bar .meta{display:none}
+    .guide{display:none}
+  }
+  @media(prefers-reduced-motion:reduce){
+    *{animation:none!important}
+    .reveal{opacity:1;transform:none;transition:none}
+    html{scroll-behavior:auto}
+  }
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor" aria-hidden="true"></div>
+
+<header class="bar">
+  <div class="brandmark">Elienai<span class="dot"></span><span class="sub">Designer</span></div>
+  <div class="meta">Proposta · Beatriz Conrado</div>
+</header>
+
+<!-- ============ GUIA FLUTUANTE (scroll-spy) ============ -->
+<nav class="guide" id="guide" aria-label="Guia da proposta">
+  <a href="#hero" data-sec="hero" class="g-item"><span class="ic"><svg viewBox="0 0 16 16"><path d="M2 7l6-5 6 5v7H2z"/></svg></span><span class="gl">Início</span></a>
+  <a href="#marca" data-sec="marca" class="g-item"><span class="ic"><svg viewBox="0 0 16 16"><path d="M8 2c3 4 4.5 5 4.5 7.2A4.5 4.5 0 113.5 9.2C3.5 7 5 6 8 2z"/></svg></span><span class="gl">Marca</span></a>
+  <a href="#arquitetura" data-sec="arquitetura" class="g-item"><span class="ic"><svg viewBox="0 0 16 16"><rect x="2" y="2.5" width="12" height="11" rx="2"/><line x1="2" y1="6" x2="14" y2="6"/></svg></span><span class="gl">Arquitetura</span></a>
+  <a href="#pacotes" data-sec="pacotes" class="g-item"><span class="ic"><svg viewBox="0 0 16 16"><path d="M3 3h5l5.5 5.5-5 5L3 8z"/><circle cx="6" cy="6" r="1"/></svg></span><span class="gl">Investimento</span></a>
+  <a href="#consultoria" data-sec="consultoria" class="g-item"><span class="ic"><svg viewBox="0 0 16 16"><path d="M8 2l1.7 3.8 4.1.4-3.1 2.8.9 4-3.6-2.1-3.6 2.1.9-4L1.2 6.2l4.1-.4z"/></svg></span><span class="gl">Consultoria</span></a>
+  <a href="#brief" data-sec="brief" class="g-item"><span class="ic"><svg viewBox="0 0 16 16"><path d="M3 8.2l3 3 7-7"/></svg></span><span class="gl">Briefing</span></a>
+</nav>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="hero">
+  <div class="hero-bg"></div>
+  <div class="wrap">
+    <div class="hero-inner">
+      <div class="hero-left">
+        <div class="eyebrow reveal in">Feito à mão para você · Elienai</div>
+        <h1 class="display hero-title reveal in" data-d="1">Olá, <span class="hl">Bia</span>.<br>Sua proposta<br>está pronta.</h1>
+        <p class="hero-sub reveal in" data-d="2">Respira. Dá uma olhada com calma — pensei em cada detalhe pra te deixar segura, não pressionada. Quando fizer sentido pra você, a gente começa. Sem pressa.</p>
+        <div class="chips reveal in" data-d="2">
+          <span class="chip">2 marcas · 2 sites</span>
+          <span class="chip">Fase 1 + Fase 2</span>
+          <span class="chip">Entrega 7–10 dias</span>
+        </div>
+        <div class="hero-cta reveal in" data-d="3">
+          <a href="#pacotes" class="btn">Ver a proposta <span class="arrow">↓</span></a>
+          <a href="#brief" class="btn ghost">Falar comigo primeiro</a>
+        </div>
+      </div>
+
+      <div class="hero-right reveal in" data-d="2">
+        <figure class="chair">
+          <div class="float">
+            <div class="window macwin">
+              <div class="top">
+                <span class="dot" style="background:#ff5f57"></span>
+                <span class="dot" style="background:#febc2e"></span>
+                <span class="dot" style="background:#28c840"></span>
+                <span class="url">para-a-bia.txt</span>
+              </div>
+              <div class="screen note">
+                <p class="hi">Oi, Bia 💙 Pra você ficar tranquila, é assim que eu vou fazer — passo a passo:</p>
+                <ol class="steps">
+                  <li><span class="n">1</span><div class="tx"><b>A sua marca</b><span>Logo, cores e tipografia: a cara do seu negócio, feita do zero.</span></div></li>
+                  <li><span class="n">2</span><div class="tx"><b>Os seus dois sites</b><span>Relocation e Consultoria, no ar e perfeitos no celular.</span></div></li>
+                  <li><span class="n">3</span><div class="tx"><b>Tudo conectado</b><span>Domínio, WhatsApp e a medição de quem te procura.</span></div></li>
+                </ol>
+                <p class="foot">Tudo pronto em <b>7–10 dias</b>. Qualquer dúvida, é só me chamar — eu te explico com calma. 🙂</p>
+              </div>
+            </div>
+          </div>
+        </figure>
+      </div>
+    </div>
+  </div>
+  <div class="scrollcue"><span class="ln"></span> Role para começar</div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ============ FASE 1 — MANUAL DE MARCA (VISUALIZAÇÃO) ============ -->
+<section class="sys" id="marca">
+  <div class="wrap">
+    <div class="head">
+      <div class="eyebrow reveal">Fase 1 · Construção de marca</div>
+      <h2 class="display reveal" data-d="1">Antes do site, a marca.</h2>
+      <p class="lead reveal" data-d="2">Tudo isto é desenhado e entregue como o seu manual completo. Aqui está a
+        forma do que vamos construir — a sua identidade entra em cada peça.</p>
+    </div>
+
+    <div class="bento">
+      <div class="tile lg reveal">
+        <div class="k">Tipografia</div>
+        <div class="mono-demo">Aa<small>Display &amp; corpo · escala definida</small></div>
+      </div>
+      <div class="tile reveal" data-d="1">
+        <div class="k">Logótipo</div>
+        <div class="logo-ph"><div class="mk">A</div></div>
+      </div>
+      <div class="tile reveal" data-d="2">
+        <div class="k">Símbolo</div>
+        <div class="logo-ph"><div class="mk" style="border-radius:18px">B</div></div>
+      </div>
+      <div class="tile wd reveal">
+        <div class="k">Paleta</div>
+        <div class="swatches">
+          <div class="sw" style="background:#FFFFFF"></div>
+          <div class="sw" style="background:#0B0B0C"></div>
+          <div class="sw" style="background:#1A65E8"></div>
+          <div class="sw" style="background:#3D88F5"></div>
+          <div class="sw" style="background:#D6E8FE"></div>
+        </div>
+      </div>
+      <div class="tile reveal" data-d="1">
+        <div class="k">Componentes</div>
+        <div class="btns"><span class="pill solid">Botão</span><span class="pill ghost">Secundário</span></div>
+      </div>
+      <div class="tile wd reveal">
+        <div class="k">Direção de fotografia</div>
+        <div class="photo-ph"><span>Estilo, luz e tratamento das imagens</span></div>
+      </div>
+      <div class="tile wd reveal" data-d="1">
+        <div class="k">Tom de voz</div>
+        <p class="voice"><b>Relocation</b> fala ao coração. <b>Consultoria</b> fala à cabeça. Duas vozes, uma marca.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ============ FASE 2 — ARQUITETURA COMPARATIVA ============ -->
+<section class="arch" id="arquitetura">
+  <div class="wrap">
+    <div class="head">
+      <div class="eyebrow reveal">Fase 2 · Arquitetura</div>
+      <h2 class="display reveal" data-d="1">Dois sites, dois caminhos.</h2>
+      <p class="lead reveal" data-d="2">Cada serviço com a sua estrutura própria. Veja como cada site fica organizado,
+        do topo ao rodapé — uma maquete da experiência que vamos construir.</p>
+    </div>
+
+    <div class="compare">
+      <!-- SITE 1 — Relocation -->
+      <div class="siteCol reveal">
+        <div class="sitehead"><span class="brand">Beatriz Conrado</span><span class="svc">Relocation</span></div>
+        <div class="dom">beatrizconrado.com</div>
+        <div class="window">
+          <div class="top"><span class="dot" style="background:#ff5f57"></span><span class="dot" style="background:#febc2e"></span><span class="dot" style="background:#28c840"></span><span class="url">beatrizconrado.com</span></div>
+          <div class="screen">
+            <div class="wf hero-wf"><div class="lbl">Início · a travessia</div><div class="ln m"></div><div class="ln s"></div></div>
+            <div class="wf"><div class="lbl">A jornada — passo a passo</div><div class="ln"></div><div class="ln s"></div></div>
+            <div class="wf"><div class="lbl">Histórias — quem fala é o resultado</div><div class="ln m"></div></div>
+            <div class="wf"><div class="lbl">Como acompanho você</div><div class="ln s"></div></div>
+            <div class="wf"><div class="lbl">Falar com a Beatriz</div><div class="ln s"></div></div>
+          </div>
+        </div>
+        <p class="about">Linguagem premium e emocional. Vende a mudança de vida completa — paz e dignidade do início ao novo lar.</p>
+      </div>
+
+      <div class="midline reveal"></div>
+
+      <!-- SITE 2 — Consultoria -->
+      <div class="siteCol reveal" data-d="1">
+        <div class="sitehead"><span class="brand">Advena</span><span class="svc">Consultoria</span></div>
+        <div class="dom">advena.com</div>
+        <div class="window">
+          <div class="top"><span class="dot" style="background:#ff5f57"></span><span class="dot" style="background:#febc2e"></span><span class="dot" style="background:#28c840"></span><span class="url">advena.com</span></div>
+          <div class="screen">
+            <div class="wf hero-wf"><div class="lbl">Início · clareza e controlo</div><div class="ln m"></div><div class="ln s"></div></div>
+            <div class="wf"><div class="lbl">Diagnóstico — descubra o seu caminho</div><div class="ln"></div><div class="ln s"></div></div>
+            <div class="wf"><div class="lbl">Áreas — saúde · educação · trabalho</div><div class="ln m"></div></div>
+            <div class="wf"><div class="lbl">Documentação e trâmites</div><div class="ln s"></div></div>
+            <div class="wf"><div class="lbl">Agendar consulta</div><div class="ln s"></div></div>
+          </div>
+        </div>
+        <p class="about">Linguagem racional e direta. Direciona negócios e trâmites — o cliente entende o seu caso e sente segurança.</p>
+      </div>
+    </div>
+    <p class="op reveal" data-d="2" style="margin-top:22px;font-size:.72rem;letter-spacing:.1em;color:var(--mist-2);text-transform:uppercase">Estrutura ilustrativa · disponibilidade dos domínios a confirmar</p>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ============ PACOTES ============ -->
+<section class="plans" id="pacotes">
+  <div class="wrap">
+    <div class="eyebrow reveal">O investimento</div>
+    <h2 class="display reveal" data-d="1">Escolha o caminho.</h2>
+    <div class="note reveal" data-d="2">Fase 1 + Fase 2 incluídas · selecione um cartão para avançar</div>
+
+    <div class="pgrid">
+      <!-- A -->
+      <div class="plan feat" data-plan="A" data-name="A — Dois mundos">
+        <div class="badge">Recomendada</div><div class="check">✓</div>
+        <div class="tier">Proposta A</div>
+        <div class="pname">Dois mundos</div>
+        <div class="desc">Duas marcas, dois domínios independentes. Cada serviço com a sua casa e autoridade premium.</div>
+        <div class="price">€300 <small>· €150 / site</small></div>
+        <div class="maint">Manutenção mensal de consultoria · <b>€20</b></div>
+        <div class="ideal">Ideal para separar por completo Relocation e Consultoria.</div>
+        <ul>
+          <li>Construção de marca para cada site</li>
+          <li>Design system + manual de marca</li>
+          <li>Direção e tratamento de fotografias</li>
+          <li>Dois sites multilíngue no ar</li>
+          <li>Domínios, medição e captação</li>
+        </ul>
+      </div>
+      <!-- B -->
+      <div class="plan" data-plan="B" data-name="B — Um lar, dois caminhos">
+        <div class="badge fut">Económica</div><div class="check">✓</div>
+        <div class="tier">Proposta B</div>
+        <div class="pname">Um lar, dois caminhos</div>
+        <div class="desc">Um único domínio com dois subdomínios. As duas marcas sob o mesmo teto, gestão unificada.</div>
+        <div class="price">€250</div>
+        <div class="maint">Manutenção mensal de consultoria · <b>€20</b></div>
+        <div class="ideal">Ideal para começar mais leve, com uma só estrutura.</div>
+        <ul>
+          <li>Construção de marca para as duas frentes</li>
+          <li>Design system + manual de marca</li>
+          <li>Direção e tratamento de fotografias</li>
+          <li>Um domínio + dois subdomínios</li>
+          <li>Domínio, medição e captação</li>
+        </ul>
+      </div>
+      <!-- C -->
+      <div class="plan future" data-plan="C" data-name="C — O acompanhamento">
+        <div class="badge fut">Fase futura</div>
+        <div class="tier">Proposta C</div>
+        <div class="pname">O acompanhamento</div>
+        <div class="desc">O ciclo de um ano que torna o seu serviço único: a vida do cliente, organizada num só lugar.</div>
+        <div class="price">A definir</div>
+        <div class="maint">aplicação na fase seguinte</div>
+        <div class="ideal">O passo seguinte, depois das marcas no ar.</div>
+        <ul>
+          <li>Portal do cliente, ao vivo</li>
+          <li>Contratos, currículos, prep de entrevista</li>
+          <li>Documentação e adaptação acompanhadas</li>
+          <li>Tudo num lugar, por um ciclo de 1 ano</li>
+        </ul>
+      </div>
+    </div>
+    <p class="op reveal" style="margin-top:26px;font-size:.78rem;color:var(--mist-2)">A manutenção mensal de consultoria cobre hospedagem, ajustes e atualização do conteúdo conforme a lei muda.</p>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ============ SOBRE A CONSULTORIA (ELIENAI) ============ -->
+<section class="me" id="consultoria">
+  <div class="wrap">
+    <div class="eyebrow reveal">Quem assina</div>
+    <h2 class="display reveal" data-d="1">Não entrego um site. Entrego um método.</h2>
+    <p class="lead reveal" data-d="2">A minha consultoria desenha marca, estrutura e ferramentas como um sistema só —
+      para que o seu negócio capte e organize sozinho, enquanto você cuida dos seus clientes.</p>
+    <div class="grid3">
+      <div class="me cell reveal"><div class="n">01</div><h3>Estratégia primeiro</h3><p>Cada decisão de design parte do seu público e do seu objetivo — nada é enfeite.</p></div>
+      <div class="cell reveal" data-d="1"><div class="n">02</div><h3>Acompanhamento real</h3><p>A manutenção mensal mantém tudo no ar, atualizado e a evoluir com o seu negócio.</p></div>
+      <div class="cell reveal" data-d="2"><div class="n">03</div><h3>Construído por fases</h3><p>Começamos pelo essencial e crescemos com segurança, sem desperdício.</p></div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ============ BRIEFING (desbloqueia ao escolher) ============ -->
+<section class="brief locked" id="brief">
+  <div class="wrap">
+    <div class="inner">
+      <div class="lockmsg"><div class="op">↑ Selecione um pacote para abrir</div><div style="font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:1.4rem;color:var(--paper)">Os últimos detalhes abrem quando você escolher o caminho</div></div>
+
+      <div class="eyebrow">Quase lá</div>
+      <h2 class="display">Só os últimos detalhes, Bia.</h2>
+      <p class="sub">O grosso a gente já conversou no nosso briefing 💙 Aqui ficam só uns pontos práticos pra deixar tudo claro e justo pros dois lados — sem burocracia, sem letra miúda.</p>
+
+      <form id="briefForm">
+        <div class="hintbox">
+          <div class="hb-title">Sobre o domínio (o endereço do seu site)</div>
+          <p>Eu recomendo que o domínio fique sempre <b>no seu nome</b> — assim ele é 100% seu, pra sempre, e ninguém segura ele se um dia você quiser voar sozinha. Eu te oriento no registro <b>sem custo</b>. Se preferir que eu cuide disso por você, a gente combina numa conversa à parte, sem pressa.</p>
+        </div>
+
+        <div class="fields">
+          <div class="field"><label>Você já tem um domínio registrado?</label>
+            <select name="dominio_status">
+              <option>Ainda não — quero que você me oriente</option>
+              <option>Já tenho, no meu nome</option>
+              <option>Tenho, mas não sei em nome de quem</option>
+              <option>Prefiro que a Elienai cuide (conversamos à parte)</option>
+            </select>
+          </div>
+          <div class="field"><label>Quer e-mail profissional? (ex: contato@advena.com)</label>
+            <select name="email_pro"><option>Sim, quero</option><option>Por enquanto não</option><option>Me explica isso depois</option></select>
+          </div>
+          <div class="field"><label>Os textos das páginas</label>
+            <select name="textos"><option>Escreve a base e eu ajusto</option><option>Eu te mando os textos</option><option>Vamos fazer juntos</option></select>
+          </div>
+          <div class="field"><label>Tem uma data ideal pra estar no ar?</label>
+            <input name="data" placeholder="ex: até o fim do mês" />
+          </div>
+          <div class="field full"><label>Algo que mudou ou que eu deva saber agora (opcional)</label>
+            <textarea name="obs" rows="2" placeholder="pode escrever aqui"></textarea>
+          </div>
+        </div>
+
+        <div class="terms">
+          <div class="terms-title">Pra deixar tudo combinado, numa boa:</div>
+          <label class="term"><input type="checkbox" name="consent" value="O domínio fica no meu nome — é meu, pra sempre."><span>O <b>domínio fica no meu nome</b> — é meu, pra sempre. A Elienai só me orienta.</span></label>
+          <label class="term"><input type="checkbox" name="consent" value="A manutenção mensal (20 EUR) mantém os sites no ar e atualizados."><span>Entendo que a <b>manutenção mensal (€20)</b> mantém os sites no ar, seguros e atualizados.</span></label>
+          <label class="term"><input type="checkbox" name="consent" value="Mudanças grandes depois da entrega sao uma conversa a parte."><span>Sei que <b>mudanças grandes depois da entrega</b> a gente conversa à parte, tranquilo.</span></label>
+          <label class="term"><input type="checkbox" name="consent" value="Autorizo a Elienai a mostrar este projeto no portfolio dela."><span>Autorizo a Elienai a <b>mostrar este projeto no portfólio</b> dela.</span></label>
+          <label class="term"><input type="checkbox" name="consent" value="Topo comecar pela proposta que escolhi."><span>Topo <b>começar pela proposta que escolhi</b> aqui em cima.</span></label>
+        </div>
+
+        <div class="send">
+          <button type="submit" class="btn">Enviar e combinar comigo <span class="arrow">→</span></button>
+          <span class="op" style="font-size:.78rem;color:var(--mist-2)">Pacote escolhido: <b id="briefPlan" style="color:var(--accent-2)">—</b></span>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="brandmark">Elienai<span class="dot"></span></div>
+    <div class="meta">Proposta confidencial · 24.06.2026 · Beatriz Conrado</div>
+  </div>
+</footer>
+
+<!-- ============ BARRA DE FECHAMENTO ============ -->
+<div class="closebar" id="closebar">
+  <div class="wrap">
+    <div class="lbl">Você escolheu <b id="closeName">—</b></div>
+    <button class="btn" id="closeBtn">Completar e aceitar <span class="arrow">→</span></button>
+  </div>
+</div>
+
+<!-- motion stack: Lenis (scroll suave) + GSAP ScrollTrigger (animação) -->
+<script src="https://unpkg.com/lenis@1.1.20/dist/lenis.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+  const WA = "5563999927250"; // +55 63 99992-7250
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---- Lenis: scroll suave (lenis.dev) ---- */
+  let lenis = null;
+  if (!reduce && window.Lenis && window.gsap) {
+    gsap.registerPlugin(ScrollTrigger);
+    lenis = new Lenis({ lerp:0.1, smoothWheel:true });
+    lenis.on('scroll', ScrollTrigger.update);
+    gsap.ticker.add((t)=> lenis.raf(t*1000));
+    gsap.ticker.lagSmoothing(0);
+    // âncoras com rolagem suave
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', (e)=>{
+        const t = document.querySelector(a.getAttribute('href'));
+        if (t){ e.preventDefault(); lenis.scrollTo(t, { offset:-12, duration:1.1 }); }
+      });
+    });
+  }
+
+  /* ---- GSAP: reveals com easing premium + stagger + parallax ---- */
+  if (!reduce && window.gsap) {
+    gsap.utils.toArray('.reveal').forEach(el=>{
+      const d = (parseFloat(el.dataset.d) || 0) * 0.08;
+      gsap.fromTo(el, { y:30, opacity:0 },
+        { y:0, opacity:1, duration:1, ease:'power3.out', delay:d,
+          scrollTrigger:{ trigger:el, start:'top 86%', once:true } });
+    });
+    // parallax sutil no objeto 3D
+    const chair = document.querySelector('.chair');
+    if (chair) gsap.to(chair, { yPercent:-7, ease:'none',
+      scrollTrigger:{ trigger:'.hero', start:'top top', end:'bottom top', scrub:true } });
+
+    // tilt 3D do objeto seguindo o mouse
+    const obj3d = document.querySelector('.obj3d');
+    const heroEl = document.getElementById('hero');
+    if (obj3d && heroEl && matchMedia('(hover:hover)').matches){
+      heroEl.addEventListener('mousemove', e=>{
+        const r = heroEl.getBoundingClientRect();
+        const ry = ((e.clientX - r.left) / r.width  - .5) * 16;
+        const rx = ((e.clientY - r.top ) / r.height - .5) * -11;
+        gsap.to(obj3d, { rotateX:rx, rotateY:ry, duration:.6, ease:'power2.out', transformPerspective:1000 });
+      });
+      heroEl.addEventListener('mouseleave', ()=> gsap.to(obj3d, { rotateX:0, rotateY:0, duration:.9, ease:'power2.out' }));
+    }
+  } else {
+    document.querySelectorAll('.reveal').forEach(el=> el.style.opacity = 1);
+  }
+
+  /* cursor vermelho — segue o ponteiro (PC) e o dedo (celular) */
+  (function(){
+    const cursor = document.getElementById('cursor');
+    if(!cursor) return;
+    if (matchMedia('(hover:hover) and (pointer:fine)').matches)
+      document.documentElement.classList.add('has-cursor');
+
+    if (window.gsap){
+      gsap.set(cursor, { xPercent:-50, yPercent:-50 });
+      const xTo = gsap.quickTo(cursor,'x',{ duration:.5, ease:'power3' });
+      const yTo = gsap.quickTo(cursor,'y',{ duration:.5, ease:'power3' });
+      const move = (x,y)=>{ cursor.style.opacity = 1; xTo(x); yTo(y); };
+      window.addEventListener('mousemove', e=> move(e.clientX, e.clientY));
+      window.addEventListener('touchstart', e=>{ const t=e.touches[0]; if(t) move(t.clientX,t.clientY); }, {passive:true});
+      window.addEventListener('touchmove',  e=>{ const t=e.touches[0]; if(t) move(t.clientX,t.clientY); }, {passive:true});
+      document.querySelectorAll('a,button,.plan[data-plan],.g-item,.chip').forEach(el=>{
+        el.addEventListener('mouseenter', ()=> cursor.classList.add('big'));
+        el.addEventListener('mouseleave', ()=> cursor.classList.remove('big'));
+      });
+    } else {
+      window.addEventListener('mousemove', e=>{ cursor.style.opacity=1; cursor.style.left=e.clientX+'px'; cursor.style.top=e.clientY+'px'; });
+    }
+  })();
+
+  /* guia flutuante — marca a seção vista conforme desce */
+  (function(){
+    const items=[...document.querySelectorAll('.g-item')];
+    const secs=items.map(a=>document.getElementById(a.dataset.sec));
+    const spy=new IntersectionObserver((es)=>{
+      es.forEach(e=>{
+        if(!e.isIntersecting) return;
+        const i=secs.indexOf(e.target);
+        items.forEach((it,j)=>{
+          it.classList.toggle('active',j===i);
+          if(j<=i) it.classList.add('seen');
+        });
+      });
+    },{rootMargin:"-45% 0px -45% 0px"});
+    secs.forEach(s=>s&&spy.observe(s));
+  })();
+
+  /* seleção de pacote → barra + desbloqueia briefing */
+  const MSG={
+    A:"Olá! Quero seguir com a Proposta A — Dois mundos (dois sites, €300 + €20/mês de manutenção de consultoria). Vamos começar?",
+    B:"Olá! Quero seguir com a Proposta B — Um lar, dois caminhos (€250 + €20/mês de manutenção de consultoria). Vamos começar?",
+    C:"Olá! Quero saber mais sobre a Proposta C — O acompanhamento (a fase seguinte)."
+  };
+  let chosen=null;
+  const closebar=document.getElementById('closebar'), brief=document.getElementById('brief');
+  document.querySelectorAll('.plan[data-plan]').forEach(card=>{
+    if(card.classList.contains('future')) {
+      card.addEventListener('click',()=>document.getElementById('brief').scrollIntoView({behavior:'smooth'}));
+      return;
+    }
+    card.addEventListener('click',()=>{
+      document.querySelectorAll('.plan').forEach(c=>c.classList.remove('sel'));
+      card.classList.add('sel');
+      chosen=card.dataset.plan;
+      const name=card.dataset.name;
+      document.getElementById('closeName').textContent=name;
+      document.getElementById('briefPlan').textContent=name;
+      closebar.classList.add('show');
+      brief.classList.remove('locked');
+    });
+  });
+
+  document.getElementById('closeBtn').addEventListener('click',()=>{
+    document.getElementById('brief').scrollIntoView({behavior:'smooth'});
+  });
+
+  /* briefing → WhatsApp com pacote + respostas */
+  document.getElementById('briefForm').addEventListener('submit',(e)=>{
+    e.preventDefault();
+    const f=e.target, g=n=>((f.elements[n]&&f.elements[n].value)||'—');
+    const consents=[...f.querySelectorAll('input[name="consent"]:checked')].map(c=>'✔ '+c.value);
+    const base=MSG[chosen]||"Olá! Quero seguir com a proposta.";
+    const txt=base+
+      "\n\n— Detalhes —"+
+      "\nDomínio: "+g('dominio_status')+
+      "\nE-mail profissional: "+g('email_pro')+
+      "\nTextos: "+g('textos')+
+      "\nData ideal: "+g('data')+
+      "\nObs: "+g('obs')+
+      "\n\n— Combinado —\n"+(consents.length?consents.join("\n"):"(ainda não marcou nenhum)");
+    window.open("https://wa.me/"+WA+"?text="+encodeURIComponent(txt),"_blank");
+  });
+</script>
+</body>
+</html>
